@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Prashna Thokar — Business student portfolio." />
+  <title>Prashna Thokar | Student Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0b10;
+      --card: #14141c;
+      --card-2: #1b1b25;
+      --text: #f6f3f7;
+      --muted: #aaa5b2;
+      --line: rgba(255,255,255,.10);
+      --accent: #d9a7ff;
+      --accent-2: #9de7ff;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(217,167,255,.13), transparent 28rem),
+        radial-gradient(circle at 85% 30%, rgba(157,231,255,.10), transparent 25rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1080px, 92%); margin: auto; }
+    nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(11,11,16,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { height: 70px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-weight: 800; letter-spacing: .04em; }
+    .logo span { color: var(--accent); }
+    .nav-links { display:flex; gap: 24px; font-size: .92rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .hero { min-height: 88vh; display:grid; place-items:center; padding: 80px 0; }
+    .hero-grid { display:grid; grid-template-columns: 1.35fr .65fr; gap: 50px; align-items:center; }
+    .eyebrow { color: var(--accent); text-transform:uppercase; letter-spacing:.18em; font-size:.78rem; font-weight:800; }
+    h1 { font-size: clamp(3rem, 8vw, 6.5rem); line-height:.95; letter-spacing:-.065em; margin: 18px 0 26px; }
+    h1 span { color: var(--accent); }
+    .hero p { max-width: 650px; color: var(--muted); font-size: 1.08rem; }
+    .buttons { display:flex; gap: 12px; flex-wrap:wrap; margin-top: 30px; }
+    .btn {
+      padding: 12px 18px; border-radius: 999px; border: 1px solid var(--line);
+      background: var(--card); transition:.25s; font-weight:700;
+    }
+    .btn.primary { background: var(--text); color: var(--bg); border-color: transparent; }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .profile-card {
+      aspect-ratio: 1; border:1px solid var(--line); border-radius: 32px; padding: 18px;
+      background: linear-gradient(145deg, rgba(217,167,255,.14), rgba(157,231,255,.06));
+      box-shadow: var(--shadow); display:grid; place-items:center;
+    }
+    .profile-inner {
+      width:100%; height:100%; border-radius:24px; border:1px solid var(--line);
+      display:grid; place-items:center; text-align:center; padding:30px;
+      background: rgba(20,20,28,.8);
+    }
+    .initials { font-size: 5rem; font-weight:900; letter-spacing:-.08em; }
+    .profile-inner small { color:var(--muted); }
+    section { padding: 95px 0; border-top:1px solid var(--line); }
+    .section-title { display:flex; justify-content:space-between; gap:20px; align-items:end; margin-bottom:38px; }
+    .section-title h2 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing:-.05em; }
+    .section-title p { color:var(--muted); max-width:500px; }
+    .grid { display:grid; gap:18px; }
+    .grid-2 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(3,1fr); }
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      border:1px solid var(--line); border-radius:22px; padding:26px;
+    }
+    .card h3 { margin-bottom:10px; font-size:1.15rem; }
+    .card p, .card li { color:var(--muted); }
+    .tag {
+      display:inline-block; padding:6px 11px; border:1px solid var(--line);
+      border-radius:999px; margin:5px 4px 0 0; font-size:.82rem; color:var(--text);
+      background:rgba(255,255,255,.035);
+    }
+    .timeline { position:relative; padding-left:28px; }
+    .timeline:before { content:""; position:absolute; left:5px; top:5px; bottom:5px; width:1px; background:var(--line); }
+    .timeline-item { position:relative; margin-bottom:30px; }
+    .timeline-item:before {
+      content:""; position:absolute; width:10px; height:10px; border-radius:50%;
+      background:var(--accent); left:-28px; top:9px; box-shadow:0 0 0 5px rgba(217,167,255,.08);
+    }
+    .date { color:var(--accent-2); font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+    ul { padding-left:20px; }
+    .skill { margin-bottom:18px; }
+    .skill-head { display:flex; justify-content:space-between; margin-bottom:7px; }
+    .bar { height:7px; background:rgba(255,255,255,.08); border-radius:99px; overflow:hidden; }
+    .bar i { display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); }
+    .contact { text-align:center; padding-bottom:110px; }
+    .contact h2 { font-size:clamp(2.3rem,6vw,4.5rem); letter-spacing:-.06em; margin-bottom:18px; }
+    .contact p { color:var(--muted); max-width:620px; margin:0 auto; }
+    footer { border-top:1px solid var(--line); padding:28px 0; color:var(--muted); font-size:.88rem; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; }
+    .reveal { animation: rise .8s ease both; }
+    @keyframes rise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+    @media(max-width:800px) {
+      .hero-grid,.grid-2,.grid-3 { grid-template-columns:1fr; }
+      .hero { min-height:auto; padding-top:65px; }
+      .profile-card { max-width:360px; margin:auto; }
+      .nav-links { display:none; }
+      .section-title { display:block; }
+      .section-title p { margin-top:10px; }
+      .footer-inner { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#home">P<span>T</span>.</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#goals">Goals</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="home">
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Student • Business • Growth</div>
+        <h1>Hi, I'm <span>Prashna.</span></h1>
+        <p>
+          A Business student from Nepal currently studying in Korea. I’m building
+          practical experience through university, customer-facing work, teamwork,
+          and everyday life in an international environment.
+        </p>
+        <div class="buttons">
+          <a class="btn primary" href="#about">Explore my portfolio</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="profile-card reveal">
+        <div class="profile-inner">
+          <div>
+            <div class="initials">PT</div>
+            <small>Business Student · Dong-A University</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About me</h2>
+        <p>A curious student focused on learning, adapting, communicating, and creating a strong foundation for a future career in business.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>My story</h3>
+          <p>
+            I’m from Nepal and currently pursuing my bachelor’s degree in Business
+            at Dong-A University in Korea. Moving abroad has pushed me to become
+            more independent, adaptable, and confident in unfamiliar environments.
+          </p>
+        </article>
+        <article class="card">
+          <h3>What I bring</h3>
+          <p>
+            I bring a willingness to learn, experience working with people,
+            responsibility in fast-paced environments, and the ability to
+            communicate across cultures.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="section-title">
+        <h2>Education</h2>
+        <p>My academic foundation and current area of study.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">Current</div>
+          <h3>Dong-A University — Business</h3>
+          <p>Busan, South Korea · Bachelor's degree</p>
+          <div style="margin-top:10px">
+            <span class="tag">Business</span>
+            <span class="tag">University Studies</span>
+            <span class="tag">International Student</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="date">Academic interests</div>
+          <h3>Business & practical learning</h3>
+          <p>
+            Interested in developing knowledge that connects classroom learning
+            with real-world work, communication, teamwork, and future career opportunities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>My hospitality training and practical experience from Nepal.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="date">1 year · Nepal</div>
+          <h3>Restaurant Experience</h3>
+          <p>
+            One year of experience working in a restaurant in Nepal, developing
+            practical hospitality, teamwork, communication, and customer-facing skills.
+          </p>
+          <div style="margin-top:14px">
+            <span class="tag">Hospitality</span>
+            <span class="tag">Restaurant Operations</span>
+            <span class="tag">Teamwork</span>
+            <span class="tag">Communication</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="date">Training</div>
+          <h3>Barista Course</h3>
+          <p>
+            Completed barista training and developed foundational knowledge and
+            practical skills related to coffee preparation and café service.
+          </p>
+          <div style="margin-top:14px">
+            <span class="tag">Barista Training</span>
+            <span class="tag">Coffee Preparation</span>
+            <span class="tag">Café Service</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="date">Professional development</div>
+          <h3>Internship</h3>
+          <p>
+            Internship experience that provided exposure to a professional
+            working environment and helped develop practical workplace skills.
+          </p>
+          <div style="margin-top:14px">
+            <span class="tag">Professional Experience</span>
+            <span class="tag">Learning</span>
+            <span class="tag">Teamwork</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Skills I am developing through university, work, and life in Korea.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Professional strengths</h3>
+          <div class="skill"><div class="skill-head"><span>Communication</span><span>Growing</span></div><div class="bar"><i style="width:82%"></i></div></div>
+          <div class="skill"><div class="skill-head"><span>Teamwork</span><span>Strong</span></div><div class="bar"><i style="width:86%"></i></div></div>
+          <div class="skill"><div class="skill-head"><span>Adaptability</span><span>Strong</span></div><div class="bar"><i style="width:90%"></i></div></div>
+          <div class="skill"><div class="skill-head"><span>Hospitality</span><span>Strong</span></div><div class="bar"><i style="width:84%"></i></div></div>
+        </div>
+        <div class="card">
+          <h3>Languages & tools</h3>
+          <p style="margin-bottom:12px">Languages</p>
+          <span class="tag">Nepali</span>
+          <span class="tag">Tamang</span>
+          <span class="tag">Hindi</span>
+          <span class="tag">English</span>
+          <span class="tag">Korean — Learning</span>
+          <p style="margin:18px 0 12px">Digital / study tools</p>
+          <span class="tag">Microsoft Office</span>
+          <span class="tag">Online research</span>
+          <span class="tag">Presentation work</span>
+          <span class="tag">Basic programming / R coursework</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="goals">
+    <div class="container">
+      <div class="section-title">
+        <h2>My goals</h2>
+        <p>Where I want my learning journey to take me.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>01 — Learn</h3>
+          <p>Build a stronger understanding of business and develop practical skills that can be used beyond the classroom.</p>
+        </article>
+        <article class="card">
+          <h3>02 — Experience</h3>
+          <p>Gain more professional experience, especially in roles where communication, teamwork, and business knowledge come together.</p>
+        </article>
+        <article class="card">
+          <h3>03 — Grow</h3>
+          <p>Become a confident international professional who can work effectively across cultures and environments.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects & achievements</h2>
+        <p>This section is ready for your university projects, certificates, awards, presentations, or other achievements.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>University coursework</h3>
+          <p>Business assignments, presentations, programming/R coursework, and other academic work can be added here.</p>
+        </article>
+        <article class="card">
+          <h3>Coming soon</h3>
+          <p>Add certificates, competitions, volunteer work, projects, or other achievements as your portfolio grows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="eyebrow">Let's connect</div>
+      <h2>Thanks for visiting.</h2>
+      <p>
+        I’m always interested in learning, meeting new people, and discovering
+        opportunities that help me grow as a business student and future professional.
+      </p>
+      <div class="buttons" style="justify-content:center">
+        <!-- Replace these with your real links before publishing. -->
+        <a class="btn primary" href="mailto:YOUR_EMAIL@example.com">Email me</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 Prashna Thokar</span>
+    <span>Built as a single-file GitHub portfolio.</span>
+  </div>
+</footer>
+
+</body>
+</html>
